@@ -8,24 +8,35 @@
 <!-- код  бублика-->
 <script src="https://d3js.org/d3.v7.min.js"></script>
 <script>
-  // input data
-  const data = [
-    {
+
+  zeroFill = false
+  var data = [    {
       name: 'Лайки',
-      value: {{ donut_dict.likes }},
+
+     value: {{ donut_dict.likes }},
       color: '#7BA05B',
     },
     {
       name: 'Бонусы',
-      value: {{ donut_dict.bonus }},
+
+
+     value: {{ donut_dict.bonus }},
       color: '#98B7DB',
     },
     {
       name: 'Ошибки',
-      value: {{ donut_dict.mistakes }},
+
+
+    value: {{ donut_dict.mistakes }},
       color: '#FF7518',
     },
   ];
+  if(data[0].value == 0 && data[1].value == 0 && data[2].value == 0){
+    var zeroFill = true;
+    data[0].value = 33;
+    data[1].value = 33;
+    data[2].value = 33;
+  }
 
   // retrieve the svg in which to plot the viz
   const svg = d3.select('svg');
@@ -38,7 +49,7 @@
 
   // with the margin convention include a group element translated within the svg canvas
   const margin = {
-    top: 25,
+    top: 35,
     right: 20,
     bottom: 20,
     left: 20,
@@ -136,6 +147,7 @@
     .attr('stroke-dashoffset', radius * 3.14 * 2);
 
   // include line elements visually connecting the text labels with the arcs
+
   groupsArcs
     .append('line')
     .attr('x1', 0)
@@ -155,14 +167,18 @@
     .attr('stroke-dasharray', 25)
     .attr('stroke-dashoffset', 25);
 
-// include text elements associated with the arcs
+
+
+
+  if (!zeroFill){
+
+  // include text elements associated with the arcs
   groupsArcs
     .append('text')
     .attr('x', 0)
     .attr('y', 0)
-    .attr('font-size', 12)
+    .attr('font-size', 14)
     .attr('font-family', 'Nunito')
-
     .attr('text-anchor', (d) => {
       const [x] = arc.centroid(d);
       return x > 0 ? 'start' : 'end';
@@ -177,7 +193,29 @@
   `)
     .style('opacity', 0)
     .style('visibility', 'hidden');
-
+  }else{
+     // include text elements associated with the arcs
+  groupsArcs
+    .append('text')
+    .attr('x', 0)
+    .attr('y', 0)
+    .attr('font-size', 14)
+    .attr('font-family', 'Nunito')
+    .attr('text-anchor', (d) => {
+      const [x] = arc.centroid(d);
+      return x > 0 ? 'start' : 'end';
+    })
+    .attr('transform', (d) => {
+      const [x, y] = arc.centroid(d);
+      const offset = x > 0 ? 50 : -50;
+      return `translate(${x + offset} ${y})`;
+    })
+    .html(({ data: d }) => `
+    <tspan x="0", y=5>${d.name}: 0</tspan>
+  `)
+    .style('opacity', 0)
+    .style('visibility', 'hidden');
+  }
 
   // TRANSITIONS
   // once the elements are set up
@@ -231,5 +269,4 @@
         .style('opacity', 1)
         .style('visibility', 'visible');
     });
-
 </script>
