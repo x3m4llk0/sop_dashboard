@@ -30,7 +30,7 @@
                             <td>{{ bonus.criterion }}</td>
                             <td>{{ bonus.comment }}</td>
                             <td>{{ bonus.initiator }}</td>
-                            <td>{{ bonus.created_at }}</td>
+                            <td>{{ bonus.date|date:'d.m.Y'  }}</td>
                         </tr>
                         {% endfor %}
                         </tbody>
@@ -59,7 +59,7 @@
                             <td>{{ mistake.criterion }}</td>
                             <td>{{ mistake.comment }}</td>
                             <td>{{ mistake.initiator }}</td>
-                            <td>{{ mistake.created_at }}</td>
+                            <td>{{ mistake.date|date:'d.m.Y' }}</td>
                         </tr>
                         {% endfor %}
                         </tbody>
