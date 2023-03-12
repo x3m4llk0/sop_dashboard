@@ -1,0 +1,96 @@
+{% load static %}
+
+
+<link rel="stylesheet" href="{% static 'assets/css/quarter.css' %}"/>
+<link rel="stylesheet" href="{% static 'assets/css/charts.min.css' %}">
+<link rel="stylesheet" href="{% static 'assets/css/chart.css' %}">
+
+
+<!-- Центральный контент -->
+<div class="content">
+
+
+    <!-- Кварталы -->
+    <div class="quarter_panel">
+        <div class="quarter">
+            <button class="quarter">1Q</button>
+            <button class="quarter">2Q</button>
+            <button class="quarter">3Q</button>
+            <button class="quarter">4Q</button>
+        </div>
+    </div>
+    <!-- Кварталы -->
+
+    <!-- Ошибки -->
+    <div class="errors">
+        <h3 class="chartHeader">Количество ошибок</h3>
+        <div class="whiteBlock"></div>
+
+        <div class="axis">
+            <div class="end-value" data-display-label="10"></div>
+            <div class="end-value" data-display-label="8"></div>
+            <div class="end-value" data-display-label="6"></div>
+            <div class="end-value" data-display-label="4"></div>
+            <div class="end-value" data-display-label="2"></div>
+            <div class="end-value" data-display-label="0"></div>
+        </div>
+
+        <div class="bar-chart" style="--max-value:10; --min-value: 0;">
+            <div class="bar" style="--bar-value:5" data-axis-label="ЧА"></div>
+            <div class="bar" style="--bar-value:0" data-axis-label="ЧА"></div>
+            <div class="bar" style="--bar-value:1" data-axis-label="ЧА"></div>
+            <div class="bar" style="--bar-value:1" data-axis-label="ЧА"></div>
+            <div class="bar" style="--bar-value:2" data-axis-label="ЧА"></div>
+            <div class="bar" style="--bar-value:3" data-axis-label="ЧА"></div>
+            <div class="bar" style="--bar-value:4" data-axis-label="ЧА"></div>
+            <div class="bar" style="--bar-value:5" data-axis-label="ЧА"></div>
+            <div class="bar" style="--bar-value:6" data-axis-label="ЧА"></div>
+            <div class="bar" style="--bar-value:7" data-axis-label="ЧА"></div>
+            <div class="bar" style="--bar-value:8" data-axis-label="ЧА"></div>
+            <div class="bar" style="--bar-value:9" data-axis-label="ЧА"></div>
+            <div class="bar" style="--bar-value:2" data-axis-label="ЧА"></div>
+            <div class="bar" style="--bar-value:3" data-axis-label="ЧА"></div>
+            <div class="bar" style="--bar-value:4" data-axis-label="ЧА"></div>
+            <div class="bar" style="--bar-value:5" data-axis-label="ЧА"></div>
+        </div>
+    </div>
+    <!-- Ошибки -->
+
+    <!-- Бонусы -->
+    <div class="bonus">
+        <h3 class="chartHeader">Количество бонусов</h3>
+  <div class="whiteBlock"></div>
+    <div class="axis">
+
+
+      <div class="end-value" data-display-label="10"></div>
+      <div class="end-value" data-display-label="8"></div>
+      <div class="end-value" data-display-label="6"></div>
+      <div class="end-value" data-display-label="4"></div>
+      <div class="end-value" data-display-label="2"></div>
+      <div class="end-value" data-display-label="0"></div>
+
+
+    </div>
+
+  <div class="bar-chart" style="--max-value:10; --min-value: 0;">
+
+
+
+    <div class="bar"  style="--bar-value:5" data-axis-label="ЧА"></div>
+    <div class="bar"  style="--bar-value:0" data-axis-label="ЧА"></div>
+    <div class="bar"  style="--bar-value:1" data-axis-label="ЧА"></div>
+    <div class="bar"  style="--bar-value:1" data-axis-label="ЧА"></div>
+    <div class="bar"  style="--bar-value:2" data-axis-label="ЧА"></div>
+
+  </div>
+    </div>
+    <!-- Бонусы -->
+
+    <!-- Топ ошибок -->
+    <div class="top-errors">
+        <iframe src="" width="100%" height=""></iframe>
+    </div>
+    <!-- Топ ошибок -->
+</div>
+<!-- Центральный контент -->

@@ -1,0 +1,840 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+
+@font-face {
+  font-family: Nunito;
+  src: url(../fonts/Nunito-Regular.ttf);
+}
+/* найти нормальный скролл для мозиллы */
+::-webkit-scrollbar {
+  height: 8px;
+  width: 8px;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(123, 160, 91, 1);
+  -webkit-border-radius: 5px;
+}
+
+body {
+  background: #F2F3F0;
+  position: relative;
+  height: 100%;
+  background: #F2F3F0;
+  font-family: 'Nunito';
+  font-size: 14px;
+  color: #000;
+  margin: 0;
+  padding: 0;
+
+}
+/* А сами чините */
+a {
+  text-decoration: none;
+  color: black;
+}
+a:hover{
+  color: #fff;
+}
+a:visited {
+  color: black;
+ }
+a:active{
+  color: #FFFFFF;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  margin-left: 40px;
+  margin-right: 40px;
+  margin-top: 20px
+}
+
+.profile {
+  margin-right: 25px;
+  object-fit: cover;
+  border-radius: 25px;
+  height: 36px;
+  width: 36px;
+
+}
+
+.exit {
+  display: flex;
+}
+
+.exit_icon {
+  margin-left: 15px;
+  margin-right: 30px;
+  background-image: url(../imgs/log-out.svg);
+  width: 33px;
+  height: 33px;
+  background-repeat: no-repeat;
+}
+
+.name_main {
+  font-family: 'Nunito';
+  font-style: normal;
+  font-size: 24px;
+  line-height: 33px;
+
+  color: #3E4E2F;
+}
+
+/*
+div {
+	border-radius: 10px;
+	/*border: 1px solid black;
+	background: #aaff00;
+}*/
+
+
+.worker_cards {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  height: 148px;
+  margin-left: 40px;
+  margin-right: 40px;
+
+
+
+}
+
+/* стили слайдера */
+
+.swiper {
+  height: 100%;
+  background: #F2F3F0;
+  width: 100%;
+
+}
+
+.swiper-slide {
+
+  text-align: center;
+  font-size: 14px;
+  background: #fff;
+  display: inline-block;
+  justify-content: center;
+  vertical-align: top;
+  width: 109px;
+  height: 140px;
+  border-radius: 10px;
+
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.06);
+
+
+}
+
+:root {
+
+  --swiper-theme-color: rgba(255, 255, 255, 0);
+  ;
+}
+
+.swiper-button-next {
+  background-image: url(../imgs/buttonNext.svg);
+  left: 97%;
+
+}
+
+
+.swiper-button-prev {
+  background-image: url(../imgs/buttonPrev.svg);
+  margin-left: 94%;
+}
+
+
+.swiper-button-next,
+.swiper-button-prev {
+
+  background-size: 100% 100%;
+
+  opacity: 0.65;
+  transition: 0.2s ease-out;
+  background-repeat: no-repeat;
+  width: 45;
+  cursor: pointer;
+}
+
+.swiper-button-next:hover,
+.swiper-button-prev:hover {
+  opacity: 1;
+}
+
+.swiper-button-disabled {
+  visibility: hidden;
+  opacity: 0;
+  transition: 0.2s ease-out;
+
+}
+
+.cardShadow {
+  width: 120px;
+  pointer-events: none;
+  height: 140px;
+  left: 94%;
+  position: fixed;
+  display: inline-block;
+  background: linear-gradient(266.66deg, #F2F3F0 0.32%, rgba(242, 243, 240, 0.475) 63.28%, rgba(255, 255, 255, 0) 97.03%);
+  display: block;
+
+  top: 0;
+  z-index: 3;
+
+
+}
+
+
+.swiper-slide .avatar {
+  object-fit: cover;
+
+  margin-top: 10px;
+  margin-bottom: 7px;
+
+  width: 71px;
+  height: 71px;
+
+  border-radius: 50%;
+  border: 3px solid;
+
+}
+
+.swiper-slide .imgLike {
+
+  margin-top: 2px;
+  margin-left: -22px;
+
+  display: inline-block;
+
+  Width: 21px;
+  Height: 20px;
+
+  position: absolute;
+
+}
+
+.swiper-slide .amountLikes {
+
+  position: absolute;
+  vertical-align: top;
+
+  margin-top: 3px;
+  margin-left: 2px;
+
+
+  font-family: 'Nunito';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 19px;
+  z-index: 99;
+  /* identical to box height */
+
+  /* black */
+  color: #000000;
+}
+
+.swiper-slide .FIO {
+  display: block;
+  z-index: 99;
+  height: 16px;
+
+  font-family: 'Nunito';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 16px;
+
+  /* black */
+  color: #000000;
+
+  /* Inside auto layout */
+  flex: none;
+  order: 1;
+  flex-grow: 0;
+}
+
+/* стили слайдера конец */
+
+/* mid */
+.content {
+  /*border: solid black 1px;*/
+  height: 207px;
+  margin-left: 40px;
+  margin-right: 40px;
+  margin-bottom: 20px;
+  display: flex;
+
+  justify-content: space-between;
+}
+
+/* кварталы */
+/* задник */
+.quarterBox {
+  padding-top: 5px;
+  padding-left: 13px;
+  width: 60px;
+
+  background: white;
+  min-width: 50px;
+  border-radius: 10px;
+
+}
+
+.quarterButton {
+
+  border-radius: 5px;
+  height: 38px;
+  width: 38px;
+
+  cursor: pointer;
+  border: 1px solid #7BA05B;
+  background: white;
+  margin: 9%;
+
+  font-family: 'Nunito';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 22px;
+}
+
+
+.quarterButton-Selected{
+  border-radius: 5px;
+  height: 38px;
+  width: 38px;
+  color: rgb(255, 255, 255);
+  cursor: pointer;
+  border: 1px solid #7BA05B;
+  background: white;
+  margin: 9%;
+  
+  font-family: 'Nunito';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 22px;
+
+  background-color: #7CA05A; 
+}
+
+.quarterButton:hover {
+  background-color: #7CA05A;
+  color: #FFFFFF;
+  border: none;
+}
+.quarterButton:active, .quarterButton-Selected:active {
+  box-shadow: inset 0 0 5px rgba(0, 0, 0, .5);
+
+ }
+
+/* графики */
+
+.bonusesBar{
+    width: 32%;
+  background: white;
+  border-radius: 10px;
+
+  overflow-x: scroll;
+  overflow-y: hidden;
+  ;
+
+}
+/* почему-то не работает, поэтому к двум графикам применено бонусесБар */ 
+.errorsBar {
+  width: 32%;
+  background: white;
+  border-radius: 10px;
+
+  overflow-x: scroll;
+  overflow-y: hidden;
+  
+}
+
+.top-errors {
+	width: 27%;
+	background: white;
+  font-family: 'Nunito';
+
+  border-radius: 10px;
+}
+.top-errors svg{
+  font-family: 'Nunito';
+}
+
+.html{
+  font-family: 'Nunito';
+  font-size: 16px;
+}
+
+/* графики конец */
+
+
+.tabl {
+	height: 450px;
+	margin-left: 40px;
+	margin-right:40px;
+	background: white;
+  border-radius: 10px;
+
+}
+
+
+/* таб-слайдер*/
+.wrapper {
+  padding-left: 22px;
+  padding-top: 22px;
+}
+
+/* задник слайдера */
+.wrapper nav {
+  position: relative;
+  width: 345.4px;
+  height: 34px;
+  display: flex;
+  border-radius: 8.91px;
+  align-items: center;
+  background: rgba(118, 118, 128, 0.12);
+
+}
+
+/* курсор и тест */
+.wrapper nav label {
+  display: block;
+  width: 169.35px;
+  position: relative;
+  /*border: 1px solid ;*/
+  font-family: 'Nunito';
+  font-size: 16px;
+  left: 3.6px;
+  color: black;
+  text-align: center;
+  line-height: 28px;
+
+  cursor: pointer;
+  z-index: 1;
+  height: 28px;
+  border-radius: 8.91px;
+  transition: all 0.3s ease-in;
+}
+
+.wrapper nav label:hover {
+  background: rgba(255, 255, 255, 0.7);
+
+
+  position: relative;
+}
+
+/* какой текст будет у выделенной кнопки */
+#bonuses:checked~nav label.bonuses,
+#errors:checked~nav label.errors {
+  color: rgb(0, 0, 0);
+  font-family: 'Nunito';
+
+  transition: all 0.5s ease-in;
+}
+
+/* блок слайдера */
+nav .slider {
+  position: absolute;
+  height: 28px;
+  width: 169px;
+  left: 3px;
+  margin-right: 3px;
+  z-index: 0;
+  border-radius: 8.91px;
+  background: rgb(255, 255, 255);
+  transition: all 0.2s ease-in;
+  box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.12);
+
+}
+
+input[type="radio"] {
+  display: none;
+}
+
+/* раз кнопки две — каждой по 50% */
+#errors:checked~nav .slider {
+  left: 50.5%;
+}
+
+section .content {
+  display: none;
+  background: #fff;
+
+}
+
+#bonuses:checked~section .bonusesTable,
+#errors:checked~section .errorsTable {
+  display: block;
+
+}
+
+.table {
+  width: 100%;
+
+  text-align: left;
+  font-family: 'Nunito';
+  font-size: 14px;
+  border-collapse: separate;
+  border-spacing: 0 1px;
+
+  /* correct ` on first border spacing if desired */
+}
+
+.table th {
+  font-weight: bold;
+  padding-left: 25px;
+  background: #ffffff;
+  border: none;
+  height: 45px;
+
+
+
+
+
+
+  /*border-bottom: 5px solid #F2F8F8;*/
+}
+
+.tableFixHead {
+  overflow-y: auto;
+  height: 385px;
+
+}
+
+.tableFixHead thead th {
+  position: sticky;
+  top: 0px;
+  background-color: white;
+
+  z-index: 1;
+
+}
+
+.table td {
+  border: solid 1px rgba(118, 118, 128, 0.18);
+  border-style: solid none none none;
+
+
+}
+
+td {
+
+
+  padding: 10px;
+  background: rgba(255, 255, 255, 0.261);
+
+}
+
+
+
+
+td:first-child {
+  border-left-style: none;
+
+}
+
+td:last-child {
+  border-right-style: none;
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+:root {
+  --max-value: 100;
+  --min-value: 0;
+  --bar-value: 0;
+}
+
+.bonusesBar .bar-chart {
+  height: 118px;
+  display: flex;
+  position: relative;
+  justify-content: flex-start;
+  z-index: 1;
+  padding-bottom: 12px;
+  padding-left: 5px;
+  margin-top: 62px;
+  margin-left: 55px;
+  
+  
+}
+
+/* нужен, чтобы закрыть ноль в шкале */
+.whiteBlock {
+
+  height: 35px;
+  top: 43%;
+  width: 50px;
+  z-index: 22;
+  justify-content: space-between;
+  position: absolute;
+  background-color: rgba(255, 255, 255, 0.98);
+  margin-left: 0px;
+  padding-right: 5px;
+
+}
+
+/* шкала */
+.axis {
+
+  padding-left: 5px;
+  margin-top: 60px;
+  position: absolute;
+
+  display: flex;
+  flex-direction: column;
+  height: 127px;
+
+
+  width: 50px;
+  z-index: 2;
+  justify-content: space-between;
+  color: rgb(204, 204, 204);
+  font-size: 14;
+
+  background-color: rgba(255, 255, 255, 0.99);
+
+
+  -webkit-box-shadow: 21px 4px 50px -19px rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: 21px 4px 50px -19px rgba(0, 0, 0, 0.2);
+  box-shadow: 21px 4px 50px -19px rgba(0, 0, 0, 0.2);
+  font-family: 'Nunito';
+
+
+
+}
+
+.axis>div {
+  position: relative;
+  margin-top: -5px;
+
+}
+
+.axis>div:before {
+  content: attr(data-display-label);
+  width: calc(100% - 15px);
+  text-align: right;
+  display: inline-block;
+  padding-right: 5px;
+  display: inline-block;
+
+}
+
+.axis>div:after {
+  content: "";
+  width: 10px;
+  height: 1px;
+  background: rgba(204, 204, 204, 1);
+  top: 24px;
+  left: 3;
+  display: inline-block;
+
+
+  vertical-align: middle;
+}
+
+.axis>div:first-child:after {
+  vertical-align: middle;
+}
+
+.bar {
+  position: relative;
+  display: flex;
+  width: 8px;
+  align-items: flex-end;
+  margin-right: 15px;
+  left: 5px;
+  border-radius: 5px;
+  background-color: #7ba05b1e;
+
+}
+
+.bar:before {
+  position: absolute;
+  top: calc(100% - 1px);
+  text-overflow: ellipsis;
+  overflow: hidden;
+  text-align: center;
+  color: rgba(204, 204, 204, 1);
+  font-size: 12px;
+  left: -5px;
+  padding-top: 5px;
+  content: attr(data-axis-label);
+  font-family: 'Nunito';
+
+}
+
+.bar:after {
+  width: 8px;
+  position: relative;
+  content: "";
+  background: #7BA05B;
+  border-radius: 5px;
+  z-index: -1;
+  height: calc(var(--bar-value) / (var(--max-value)) * 100%);
+  animation: height 1.3s cubic-bezier(0.2, -0.55, 0.265, 2);
+
+}
+
+@keyframes height {
+  0% {
+    height: 0px;
+  }
+}
+
+.chartHeader {
+
+  font-family: 'Nunito';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 17px;
+  line-height: 23px;
+  display: flex;
+  align-items: center;
+  position: absolute;
+  z-index: 4;
+  color: #3E4E2F;
+  margin-top: 10px;
+  padding-top: 5px;
+  padding-left: 15px;
+
+}
+
+/* гистограмма конец */
+
+
+/* страница 404 */
+.notFoundBox{
+  border: #000 1px solid;
+  margin-left: 30%;
+
+  margin-top: 10%;
+  width:  40%;
+  height: 500px;
+  display: flex;
+  position: relative;
+  justify-content: space-between;
+
+}
+.notFoundFourLeft{
+  background-image: url(../imgs/404/4.svg);
+  position: relative;
+  display: flex;
+  margin-left: 5%;
+  Width:161.37px;
+  Height:301.2px;
+  margin-top: 4.69%;
+  margin-bottom: 7.82%;
+  border: #000 1px solid;
+}
+.notFoundZero{
+  background-image: url(../imgs/404/0.svg);
+  position: absolute;
+  display: flex;
+  z-index: 2;
+
+  Width:244.5px;
+  Height:323.25px;
+  margin-left: 35%;
+  margin-right: 28.12%;
+  margin-top: 4.69%;
+  margin-bottom: 7.82%;
+  border: #000 1px solid;
+}
+
+
+.notFoundFourRight{
+  background-image: url(../imgs/404/4.svg);
+  position: absolute;
+  display: flex;
+  margin-left: 75%;
+  z-index: 2;
+  Width:161.37px;
+  Height:301.2px;
+  border: #000 1px solid;
+  margin-top: 4.69%;
+  margin-bottom: 7.82%;
+
+}
+
+.notFoundToBack{
+  box-sizing: border-box;
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+justify-content: center;
+align-items: center;
+padding: 16px 20px;
+gap: 10px;
+
+position: absolute;
+width: 163px;
+height: 55px;
+left: 45%;
+top: 100%;
+color: white; ;
+/* main */
+background: #7BA05B;
+
+/* white */
+border: 1px solid #FFFFFF;
+box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.06);
+border-radius: 10px;
+}
+/* страница 404 конец */
+.tooltip {
+  position: fixed;
+  padding: 10px 15px;
+  margin-top: 20px;
+  opacity: 0;
+  animation: ani 0.4s forwards;
+
+  border-radius: 7px;
+
+  font-family: 'Nunito';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 16px;
+  display: flex;
+  align-items: center;
+
+  /* white */
+  color: #FFFFFF;
+  z-index: 99;
+
+  background: rgba(153, 153, 153, 0.95);
+
+  -webkit-box-shadow: 13px 12px 17px 0px rgba(34, 60, 80, 0.08);
+  -moz-box-shadow: 13px 12px 17px 0px rgba(34, 60, 80, 0.08);
+  box-shadow: 13px 12px 17px 0px rgba(34, 60, 80, 0.08);
+
+
+}
+@keyframes ani {
+  0% {opacity: 0;}
+  100% {opacity: 1;}
+}

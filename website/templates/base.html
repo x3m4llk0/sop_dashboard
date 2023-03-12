@@ -1,0 +1,41 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8"/>
+    <title>Карта бонусов и ошибок</title>
+    <link rel="stylesheet" href="{% static 'assets/css/swiper-bundle.min.css'%}"/>
+    <link rel="stylesheet" href="{% static 'assets/css/charts.min.css'%}">
+    <link rel="stylesheet" href="{% static 'assets/css/index.css'%}"/>
+</head>
+
+<body>
+<!-- Заголовок -->
+  <header>
+    <div class="name_project">
+      <a href="/"><h1 class="name_main">Карта бонусов и ошибок</h1></a>
+    </div>
+
+    <div class="exit">
+      <a href="#"><img class="profile" src="{% static 'assets/imgs/imgProfile.jpg'%}"></img></a>
+
+      <a href="#"><div class="exit_icon"></div></a>
+      </div>
+    </div>
+  </header>
+  <!-- Заголовок конец-->
+
+
+
+{% block index %}
+{% endblock %}
+
+<!--  Footer -->
+
+  <span style="color:#7BA05B; font-size: 11px; font-family: 'Nunito', sans-serif; margin-left: 40px;">
+    Идея, разработка, backend: Сирота Станислав. Дизайн: Щеглова Анна. Верстка: Чистяков Алексей, Петров Сергей </span>
+<!--  Footer -->
+
+</body>
+</html>

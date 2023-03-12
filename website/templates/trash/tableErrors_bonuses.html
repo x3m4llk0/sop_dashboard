@@ -1,0 +1,84 @@
+{% load static %}
+
+<head>
+    <meta charset="utf-8"/>
+    <link rel="stylesheet" href="{% static 'assets/css/tableErrors_bonuses.css' %}"/>
+</head>
+
+<body>
+<div class="tabl">
+    <div class="wrapper">
+        <input type="radio" name="slider" checked id="bonuses">
+        <input type="radio" name="slider" id="errors">
+        <nav>
+            <label for="bonuses" class="bonuses">Бонусы</label>
+            <label for="errors" class="errors">Ошибки</label>
+            <div class="slider"></div>
+        </nav>
+
+        <section>
+            <div class="content bonusesTable">
+                <div class="tableFixHead">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th style="width: 90px">ФИО</th>
+                            <th style="width: 250px">Бонус</th>
+                            <th style="width: 110px">Категория</th>
+                            <th style="width: 250px">Комментарии</th>
+                            <th style="width: 90px">Кто внёс</th>
+                            <th style="width: 25px">Дата</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for bonus in all_bonus %}
+                        <tr>
+                            <td>{{ bonus.employee }} У</td>
+                            <td>{{ bonus.activity }}</td>
+                            <td>{{ bonus.criterion }}</td>
+                            <td>{{ bonus.comment }}</td>
+                            <td>{{ bonus.initiator }}</td>
+                            <td>{{ bonus.created_at }}</td>
+                        </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+            <div class="content errorsTable">
+                <div class="tableFixHead">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th style="width: 90px">ФИО</th>
+                            <th style="width: 250px">Ошибка</th>
+                            <th style="width: 110px">Категория</th>
+                            <th style="width: 250px">Комментарии</th>
+                            <th style="width: 90px">Кто внёс</th>
+                            <th style="width: 25px">Дата</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for mistake in all_mistakes %}
+                        <tr>
+                            <td>{{ mistake.employee }} У</td>
+                            <td>{{ mistake.activity }}</td>
+                            <td>{{ mistake.criterion }}</td>
+                            <td>{{ mistake.comment }}</td>
+                            <td>{{ mistake.initiator }}</td>
+                            <td>{{ mistake.created_at }}</td>
+                        </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+    </div>
+
+
+</div>
+
+
+</body>

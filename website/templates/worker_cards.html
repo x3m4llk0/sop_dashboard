@@ -1,0 +1,49 @@
+{% load static %}
+
+<!-- Swiper -->
+<div class="worker_cards">
+    <div class="swiper mySwiper">
+        <div class="swiper-button-next">
+            <div class="cardShadow">
+
+            </div>
+        </div>
+
+        <div class="swiper-wrapper">
+
+            {% for user in slider_list %}
+            <!-- слайд -->
+            <div class="swiper-slide">
+                {% if user.photo %}
+                <img class="avatar" src="{{ user.photo.url }}"
+                     style="border-color: #8AC44B;"></img>
+                {% else %}
+                <img class="avatar" src="{% static 'assets/imgs/No_image_available.svg'%}"
+                     style="border-color: #8AC44B;"></img>
+                {% endif %}
+                <label class="FIO">
+                    {{ user.first_name }} {{ user.last_name }}
+
+                </label>
+
+                <img class="imgLike" src="{% static 'assets/imgs/heart.svg'%}"></img>
+                <label class="amountLikes">
+                {{ user.count_like }}
+                </label>
+            </div>
+            <!-- слайд -->
+            {% endfor %}
+
+        </div>
+        <!-- If we need navigation buttons -->
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
+
+    </div>
+</div>
+
+<!-- Swiper JS -->
+<script src="{% static 'assets/js/swiper-bundle.min.js' %}"></script>
+
+<!-- Initialize Swiper -->
+<script src="{% static 'assets/js/swiper_init.js' %}"></script>

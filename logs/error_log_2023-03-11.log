@@ -1,0 +1,8 @@
+2023-03-11 15:43:21 | ERROR | bot.py:67 | Bot stop!
+2023-03-11 13:58:54 | ERROR | dispatcher.py:208 | Failed to fetch updates - TelegramConflictError: Telegram server says Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+2023-03-11 13:59:20 | ERROR | dispatcher.py:208 | Failed to fetch updates - TelegramConflictError: Telegram server says Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+2023-03-11 23:30:49 | ERROR | dispatcher.py:204 | Failed to fetch updates - TelegramConflictError: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+2023-03-11 23:30:55 | ERROR | dispatcher.py:204 | Failed to fetch updates - TelegramConflictError: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+2023-03-11 23:31:01 | ERROR | dispatcher.py:204 | Failed to fetch updates - TelegramConflictError: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+2023-03-11 23:31:07 | ERROR | dispatcher.py:204 | Failed to fetch updates - TelegramConflictError: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+2023-03-11 23:31:08 | ERROR | bot.py:67 | Bot stop!

@@ -1,0 +1,23 @@
+<!-- Ошибки -->
+<div class="bonusesBar">
+    <h3 class="chartHeader">Количество ошибок</h3>
+    <div class="whiteBlock"></div>
+    <div class="axis">
+        <div class="end-value" data-display-label="10"></div>
+        <div class="end-value" data-display-label="8"></div>
+        <div class="end-value" data-display-label="6"></div>
+        <div class="end-value" data-display-label="4"></div>
+        <div class="end-value" data-display-label="2"></div>
+        <div class="end-value" data-display-label="0"></div>
+    </div>
+    <div class="bar-chart" style="--max-value:10; --min-value: 0;">
+        {% for user in mistake_list %}
+        {% if user.count == 0 %}
+        <div class="bar" style="--bar-value:0.1" data-axis-label="{{ user.short }}" data-tooltip="{{ user.tooltip }}: {{ user.count }} ошб. "></div>
+        {% else %}
+        <div class="bar" style="--bar-value:{{ user.count }}" data-axis-label="{{ user.short }}" data-tooltip="{{ user.tooltip }}: {{ user.count }} ошб. "></div>
+        {% endif %}
+        {% endfor %}
+    </div>
+</div>
+<!-- Ошибки -->

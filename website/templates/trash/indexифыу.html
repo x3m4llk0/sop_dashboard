@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block index %}
+
+{% for user in all_users %}
+  {% for i in all_likes %}
+    {% if all_likes.i.employee_id == user.user_id %}
+        {{ all_likes.i.like_total }}
+    {% endif %}
+{% empty %}
+    <li>Sorry, no athletes in this list.</li>
+{% endfor %}
+{% endfor %}
+
+
+
+
+<!-- Карточка сотрудника -->
+{% include 'cardsSlider.html' %}
+{% include 'chart_pie.html' %}
+
+<!-- Карточка сотрудника -->
+
+<!-- Центральный контент -->
+<!--{% include 'mid_panel.html' %}-->
+<!-- Центральный контент -->
+
+<!-- Таблица ошибок / бонусов -->
+{% include 'tableErrors_bonuses.html' %}
+
+
+
+<!-- Таблица ошибок / бонусов -->
+
+{% endblock %}
+
+

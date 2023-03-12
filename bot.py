@@ -4,18 +4,21 @@ import logging
 from aiogram import Bot, Dispatcher
 from aiogram.fsm.storage.memory import MemoryStorage
 
+
 from tgbot.config import load_config
 from tgbot.handlers.admin import admin_router
 from tgbot.handlers.echo import echo_router
 from tgbot.handlers.user import user_router
 from tgbot.middlewares.config import ConfigMiddleware
+from tgbot.misc.logging import configure_logger
 from tgbot.services import broadcaster
+
 
 logger = logging.getLogger(__name__)
 
 
 async def on_startup(bot: Bot, admin_ids: list[int]):
-    await broadcaster.broadcast(bot, admin_ids, "Бот був запущений")
+    await broadcaster.broadcast(bot, admin_ids, "Bot start")
 
 
 def register_global_middlewares(dp: Dispatcher, config):
@@ -24,16 +27,25 @@ def register_global_middlewares(dp: Dispatcher, config):
 
 
 async def main():
-    logging.basicConfig(
-        level=logging.INFO,
-        format=u'%(filename)s:%(lineno)d #%(levelname)-8s [%(asctime)s] - %(name)s - %(message)s',
-    )
+    configure_logger(True)
     logger.info("Starting bot")
     config = load_config(".env")
 
+    # #запуск БД
+    # engine = create_async_engine(f"{config.db.url}", future=True, echo=False)
+    # async with engine.begin() as conn:
+    #     # await conn.run_sync(BaseModel.metadata.drop_all)
+    #     await conn.run_sync(BaseModel.metadata.create_all)
+    # async_session = sessionmaker(engine, expire_on_commit=False, class_=AsyncSession)
+    # db_middleware = DBSessionMiddleware(async_session)
+
+
+    config = load_config(".env")
     storage = MemoryStorage()
     bot = Bot(token=config.tg_bot.token, parse_mode='HTML')
     dp = Dispatcher(storage=storage)
+    config = load_config()
+
 
     for router in [
         admin_router,
@@ -52,4 +64,4 @@ if __name__ == '__main__':
     try:
         asyncio.run(main())
     except (KeyboardInterrupt, SystemExit):
-        logger.error("Бот був вимкнений!")
+        logger.error("Bot stop!")

@@ -1,0 +1,15 @@
+<!-- Кварталы -->
+
+<div class="quarterBox">
+
+  {% for i in all_quarter %}
+  {% if i.id == selected %}
+  <a href="/q{{i.id}}/"><button class="quarterButton-Selected">{{i}}</button></a>
+  {% else %}
+  <a href="/q{{i.id}}/"><button class="quarterButton">{{i}}</button></a>
+  {% endif %}
+  {% endfor %}
+
+
+</div>
+<!-- Кварталы -->
