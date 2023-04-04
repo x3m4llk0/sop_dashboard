@@ -7,7 +7,7 @@ class TimedBaseModel(models.Model):
         abstract = True
 
     created_at = models.DateTimeField(auto_now_add=True)
-
+    updated_at = models.DateTimeField(auto_now=True)
 
 class User(TimedBaseModel):
     class Meta:
@@ -15,23 +15,39 @@ class User(TimedBaseModel):
         verbose_name_plural = "Пользователи"
 
     all_sop = (
-        ('СТПВ', 'Ставрополь'),
-        ('Омск', 'Омск'),
-        ('ВЛГ', 'Волгоград'),
-        ('СМР', 'Самара'),
+        ('stvp', 'Ставрополь'),
+        ('omsk', 'Омск'),
+        ('vlg', 'Волгоград'),
+        ('smr', 'Самара'),
+    )
+
+    all_role = (
+        ('analyst', 'Аналитик'),
+        ('expert', 'Эксперт'),
+        ('ns', 'Начальник сектора')
+    )
+
+    all_status = (
+        ('active', 'Активен'),
+        ('ban', 'Уволен')
+    )
+
+    all_access = (
+        ('user', 'Пользователь'),
+        ('agreement', 'Согласующий')
     )
 
     user_id = models.BigIntegerField(verbose_name="ID Пользователя Телеграм", unique=True, primary_key=True)
     first_name = models.CharField(verbose_name="Имя пользователя", max_length=100)
     last_name = models.CharField(verbose_name="Фамилия пользователя", max_length=100)
-    access = models.CharField(verbose_name="Доступ", max_length=100)
-    role = models.CharField(verbose_name="Роль в секторе", max_length=100)
-    status = models.CharField(verbose_name="Статус", max_length=100)
-    photo = models.ImageField(upload_to='photo/', blank=True)
+    access = models.CharField(verbose_name="Доступ", choices=all_access, max_length=100)
+    role = models.CharField(verbose_name="Роль в секторе", choices=all_role, max_length=100)
+    status = models.CharField(verbose_name="Статус", choices=all_status, max_length=100)
+    photo = models.ImageField(upload_to='photo/', null=True)
     sop = models.CharField(verbose_name="СОП", max_length=100, choices=all_sop, null=True)
 
     def __str__(self):
-        return f"{self.first_name} {self.last_name[:1]}."
+        return f"{self.first_name} {self.last_name[:1]}. {self.get_sop_display()}"
 
 
 class Quarter(TimedBaseModel):
