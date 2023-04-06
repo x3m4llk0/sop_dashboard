@@ -7,12 +7,12 @@ from .models import *
 def index(request, q_id = None):
     all_bonus = Bonus.objects.all()[::-1]
     all_mistakes = Mistake.objects.all()[::-1]
-    all_users = User.objects.all()
+    stvp_users = User.objects.filter(sop='stvp')
 
 
     # Для бонусов
     bonus_list=[]
-    for user in all_users:
+    for user in stvp_users:
         if q_id != None:
             bonus_list.append({'short': user.last_name[:1] + user.first_name[:1], 'tooltip': f'{user.first_name}. {user.last_name[:1]}', 'count': Bonus.objects.filter(employee=user.user_id, quarter=q_id).count()})
         else:
@@ -21,7 +21,7 @@ def index(request, q_id = None):
 
     # Для ошибок
     mistake_list=[]
-    for user in all_users:
+    for user in stvp_users:
         if q_id != None:
             mistake_list.append({'short': user.last_name[:1]+user.first_name[:1], 'tooltip': f'{user.first_name}. {user.last_name[:1]}', 'count': Mistake.objects.filter(employee=user.user_id, quarter=q_id).count()})
         else:
@@ -31,7 +31,7 @@ def index(request, q_id = None):
 
     # Для слайдера
     slider_list=[]
-    for user in all_users:
+    for user in stvp_users:
         if q_id != None:
             slider_list.append({'first_name': user.first_name, 'last_name': user.last_name[:1]+".", 'count_like':Like.objects.filter(employee=user.user_id, quarter=q_id).count(), 'photo': user.photo})
         else:
