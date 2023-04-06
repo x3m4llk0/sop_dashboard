@@ -24,13 +24,13 @@
                         </thead>
                         <tbody>
                         {% for bonus in bonus_list_map %}
-                            <td>{{ bonus.date|date:'d.m.Y' }}
                         <tr>
                             <td>{{ bonus.employee }}</td>
                             <td>{{ bonus.activity }}</td>
                             <td>{{ bonus.criterion }}</td>
                             <td>{{ bonus.comment }}</td>
-                            <td>{{ bonus.initiator }}</td>  }}</td>
+                            <td>{{ bonus.initiator }}</td>
+                            <td>{{ bonus.date|date:'d.m.Y' }}</td>
                         </tr>
                         {% endfor %}
                         </tbody>
