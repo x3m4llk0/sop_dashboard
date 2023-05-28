@@ -61,7 +61,6 @@ venv.bak/
 .pyre/
 .idea/*
 .env!/logs/
-!/.env
 !/website/db.sqlite3
 !/logs/
-
+!/.env
