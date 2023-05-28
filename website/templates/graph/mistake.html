@@ -3,19 +3,19 @@
     <h3 class="chartHeader">Количество ошибок</h3>
     <div class="whiteBlock"></div>
     <div class="axis">
-        <div class="end-value" data-display-label="10"></div>
-        <div class="end-value" data-display-label="8"></div>
-        <div class="end-value" data-display-label="6"></div>
-        <div class="end-value" data-display-label="4"></div>
-        <div class="end-value" data-display-label="2"></div>
+        <div class="end-value" data-display-label="{{ bonus_mistake_count_list.1.max_mistake }}"></div>
+        <div class="end-value" data-display-label="{{ bonus_mistake_count_list.1.tab4_mistake }}"></div>
+        <div class="end-value" data-display-label="{{ bonus_mistake_count_list.1.tab3_mistake }}"></div>
+        <div class="end-value" data-display-label="{{ bonus_mistake_count_list.1.tab2_mistake }}"></div>
+        <div class="end-value" data-display-label="{{ bonus_mistake_count_list.1.tab1_mistake }}"></div>
         <div class="end-value" data-display-label="0"></div>
     </div>
-    <div class="bar-chart" style="--max-value:10; --min-value: 0;">
+    <div class="bar-chart" style="--max-value:{{ bonus_mistake_count_list.1.max_mistake }}; --min-value: 0;">
         {% for user in mistake_list %}
         {% if user.count == 0 %}
-        <div class="bar" style="--bar-value:0.1" data-axis-label="{{ user.short }}" data-tooltip="{{ user.tooltip }}: {{ user.count }} ошб. "></div>
+        <div class="bar" style="--bar-value:0.1" data-axis-label="{{ user.short }}" data-tooltip="{{ user.tooltip }}: {{ user.count }} шт. "></div>
         {% else %}
-        <div class="bar" style="--bar-value:{{ user.count }}" data-axis-label="{{ user.short }}" data-tooltip="{{ user.tooltip }}: {{ user.count }} ошб. "></div>
+        <div class="bar" style="--bar-value:{{ user.count }}" data-axis-label="{{ user.short }}" data-tooltip="{{ user.tooltip }}: {{ user.count }} шт. "></div>
         {% endif %}
         {% endfor %}
     </div>
