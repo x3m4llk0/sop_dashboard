@@ -1,0 +1,32 @@
+<div class="allErrors">
+  <label class="labelTop">Всего</label>
+  <label class="labelCenter_errors">{{ all_mistake_count }}</label>
+  <label class="labelBottom">Ошибок</label>
+</div>
+
+
+<div class="allBonuses">
+  <label class="labelTop">Всего</label>
+  <label class="labelCenter_bonuses">{{ all_bonus_count }}</label>
+  <label class="labelBottom">Бонусов</label>
+</div>
+
+
+<div class="LikesTableBlock">
+    <div class="labelTopTable">
+    <label >Лайки</label>
+  </div>
+    <table class="tableLikes">
+      {% for like in like_list_map %}
+      <tr>
+        <td>
+          <span class="labelInfoLike"> {{ like.initiator }} поставил лайк</span>
+          <span class="labelInfoLikeDate">{{ like.date|date:'d.m.Y' }} </span>
+        </td>
+      {% endfor %}
+
+
+
+          </table>
+        </div>
+</div>

@@ -13,26 +13,51 @@
 
             {% for user in slider_list %}
             <!-- слайд -->
-            <div class="swiper-slide">
+            {% if user.user_id == selected_user_id %}
+            <div class="swiper-slide selected">
+                <a href="/id{{user.user_id}}" class="swiper-slide selected">
                 {% if user.photo %}
-                <img class="avatar" src="{{ user.photo.url }}"
-                     style="border-color: #8AC44B;"></img>
+                    <img class="avatar selected" src="{{ user.photo.url }}" style="border-color: #8AC44B;"></img>
                 {% else %}
-                <img class="avatar" src="{% static 'assets/imgs/No_image_available.svg'%}"
-                     style="border-color: #8AC44B;"></img>
+                   <img class="avatar selected" src="{% static 'assets/imgs/No_image_available.svg'%}" style="border-color: #8AC44B;"></img>
                 {% endif %}
                 <label class="FIO">
                     {{ user.first_name }} {{ user.last_name }}
-
                 </label>
-
-                <img class="imgLike" src="{% static 'assets/imgs/heart.svg'%}"></img>
-                <label class="amountLikes">
+                <div class = "amountLikes selected">
+                <label>
                 {{ user.count_like }}
                 </label>
+                </div>
+                </a>
             </div>
+            {% else %}
+            <div class="swiper-slide">
+                <a href="/id{{user.user_id}}" class="swiper-slide">
+                {% if user.photo %}
+                    <img class="avatar" src="{{ user.photo.url }}" style="border-color: #8AC44B;"></img>
+                {% else %}
+                   <img class="avatar" src="{% static 'assets/imgs/No_image_available.svg'%}" style="border-color: #8AC44B;"></img>
+                {% endif %}
+                <label class="FIO">
+                    {{ user.first_name }} {{ user.last_name }}
+                </label>
+                <div class = "amountLikes">
+                <label>
+                {{ user.count_like }}
+                </label>
+                </div>
+                </a>
+            </div>
+            {% endif %}
             <!-- слайд -->
             {% endfor %}
+
+
+
+
+
+
 
         </div>
         <!-- If we need navigation buttons -->

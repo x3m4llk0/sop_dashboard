@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-2%kh^)hh=h$&gw95a@)p))1uygvj-bdmsrws948s-1hmsbehp)
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['45.87.2.75', '127.0.0.1', 'localhost']
+ALLOWED_HOSTS = ['77.223.98.53', '127.0.0.1', 'localhost', 'sop-dashboard.ru']
 
 
 # Application definition
@@ -95,6 +95,12 @@ DATABASES = {
     }
 }
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
@@ -133,7 +139,7 @@ STATICFILES_DIRS = [
     BASE_DIR / "website/static/",
 ]
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 MEDIA_URL = '/media/'
@@ -144,3 +150,4 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
