@@ -7,6 +7,11 @@
   font-family: Nunito;
   src: url(../fonts/Nunito-Regular.ttf);
 }
+@font-face {
+  font-family: NotoSerifTamilSlanted;
+  src: url(../fonts/NotoSerifTamil-VariableFont_wdth\,wght.ttf);
+}
+
 ::-webkit-scrollbar {
   height: 8px;
   width: 8px;
@@ -367,6 +372,7 @@ div {
   border-radius: 10px;
   opacity: 0.99;
   box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.06);
+
 }
 
 .quarterButton {
@@ -428,7 +434,8 @@ div {
 
   overflow-x: scroll;
   overflow-y: hidden;
-  ;
+  box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.06);
+
   
 }
 
@@ -438,13 +445,18 @@ div {
   border-radius: 10px;
 
   overflow-x: auto;
-  /* прокрутка по горизонтали */
+  box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.06);
+
+
 }
 
 .top-errors {
 	width: 27%;
 	background: white;
   border-radius: 10px;
+
+  box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.06);
+
 }
 
 /* графики конец */
@@ -548,6 +560,7 @@ section .content {
 	margin-right:40px;
 	background: white;
   border-radius: 10px;
+  box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.06);
 
 }
 
@@ -613,10 +626,12 @@ td {
 
 .tooltip {
   position: fixed;
+
+
   padding: 5px 16px;
   margin-top: 15px;
 
-    transition: 0.55s opacity, 0.55s visibility;
+  transition: opacity 0.3s;
   border-radius: 7px;
 
   font-family: 'Nunito';
@@ -632,13 +647,12 @@ td {
   
   
   background: #999999EF;
-  transform: translateY(9px);
-  transition: all 0.3s ease-in-out;
+  transform: translateY(8px);
+
   
   box-shadow: 0 0 3px rgba(56, 54, 54, 0.86);
 
 }
-
 
 
 
@@ -671,17 +685,23 @@ td:last-child {
   margin-left: 55px;
 }
 
+
+
+
+
+
+
 .whiteBlock {
 
   height: 35px;
-  top: 83%;
-  left: 0;
-  width: 50px;
+
+
+  width: 25px;
   z-index: 22;
-  justify-content: space-between;
-  position: fixed;
-  background-color: rgba(255, 255, 255, 0.98);
-  margin-left: 0px;
+  margin-left: 25px;
+  margin-top: 170px;
+  position: absolute;
+  background-color: rgba(255, 255, 255, 1);
   padding-right: 5px;
 }
 
@@ -972,7 +992,7 @@ a{
 .allErrors  {
   padding-top: 5px;
 
-  width: 80px;
+  width: 87px;
   margin-left: 40px;
   background: white;
   min-width: 50px;
@@ -998,7 +1018,7 @@ box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.06);
 .allBonuses {
   padding-top: 5px;
 
-  width: 80px;
+  width: 87px;
   margin-left: 20px;
   background: white;
   min-width: 50px;
@@ -1034,9 +1054,9 @@ box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.06);
   font-family: 'NotoSerifTamilSlanted';
   font-style: italic;
   font-weight: 200;
-  font-size: 90px;
+  font-size: 77px;
   line-height: 140px;
-  display: flex;
+  margin-left: -15px;
   align-items: center;
   text-align: center;
   
@@ -1051,9 +1071,10 @@ box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.06);
   font-family: 'NotoSerifTamilSlanted';
   font-style: italic;
   font-weight: 200;
-  font-size: 90px;
+  font-size: 77px;
   line-height: 140px;
-  display: flex;
+  margin-left: -15px;
+
   align-items: center;
   text-align: center;
   

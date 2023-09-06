@@ -14,7 +14,7 @@
             {% for user in slider_list %}
             <!-- слайд -->
             {% if user.user_id == selected_user_id %}
-            <div class="swiper-slide selected">
+
                 <a href="/id{{user.user_id}}" class="swiper-slide selected">
                 {% if user.photo %}
                     <img class="avatar selected" src="{{ user.photo.url }}" style="border-color: #8AC44B;"></img>
@@ -30,9 +30,9 @@
                 </label>
                 </div>
                 </a>
-            </div>
+
             {% else %}
-            <div class="swiper-slide">
+
                 <a href="/id{{user.user_id}}" class="swiper-slide">
                 {% if user.photo %}
                     <img class="avatar" src="{{ user.photo.url }}" style="border-color: #8AC44B;"></img>
@@ -48,16 +48,10 @@
                 </label>
                 </div>
                 </a>
-            </div>
+
             {% endif %}
             <!-- слайд -->
             {% endfor %}
-
-
-
-
-
-
 
         </div>
         <!-- If we need navigation buttons -->

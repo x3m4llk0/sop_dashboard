@@ -10,13 +10,13 @@
 
 
 <!-- mid panel  -->
-<div class="content">
+<div class="contentProfiles">
 
     <!-- Кварталы -->
 <div class="quarterBox">
 
   {% for i in all_quarter %}
-  {% if i.id == selected_quarter %}
+  {% if i.id == q_id %}
   <a href="/id{{ selected_user_id }}/q{{i.id}}/"><button class="quarterButton-Selected">{{i}}</button></a>
   {% else %}
   <a href="/id{{ selected_user_id }}/q{{i.id}}/"><button class="quarterButton">{{i}}</button></a>

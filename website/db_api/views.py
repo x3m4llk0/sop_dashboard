@@ -11,6 +11,8 @@ def index(request, q_id = None):
     stvp_users = User.objects.filter(sop='stvp')
 
 
+    username = request.user
+    print(username)
     # Для бонусов
     bonus_list=[]
     for user in stvp_users:
@@ -41,8 +43,9 @@ def index(request, q_id = None):
         count_mistakes = max(count_mistakes_list)
         count_bonus = max(count_bonus_list)
         #бонусы
-        if count_bonus < 10:
-            max_bonus, tab4_bonus, tab3_bonus, tab2_bonus, tab1_bonus = 10, 8, 6, 4, 2
+        if count_bonus < 5:
+            max_bonus, tab4_bonus, tab3_bonus, tab2_bonus, tab1_bonus = 5, 4, 3, 2, 1
+
         else:
             max_bonus = (count_bonus // 10 + 1) * 10
             tab4_bonus = round(max_bonus / 1.25)
@@ -53,8 +56,8 @@ def index(request, q_id = None):
             {'max_bonus': max_bonus, 'tab4_bonus': tab4_bonus, 'tab3_bonus': tab3_bonus,
              'tab2_bonus': tab2_bonus, 'tab1_bonus': tab1_bonus})
         #ошибки
-        if count_mistakes < 10:
-            max_mistake, tab4_mistake, tab3_mistake, tab2_mistake, tab1_mistake = 10, 8, 6, 4, 2
+        if count_mistakes < 5:
+            max_mistake, tab4_mistake, tab3_mistake, tab2_mistake, tab1_mistake = 5, 4, 3, 2, 1
         else:
             max_mistake = (count_mistakes // 10 + 1) * 10
             tab4_mistake = round(max_mistake / 1.25)
@@ -73,8 +76,9 @@ def index(request, q_id = None):
         count_mistakes = max(count_mistakes_list)
         count_bonus = max(count_bonus_list)
         # бонусы
-        if count_bonus < 10:
-            max_bonus, tab4_bonus, tab3_bonus, tab2_bonus, tab1_bonus = 10, 8, 6, 4, 2
+        if count_bonus < 5:
+            max_bonus, tab4_bonus, tab3_bonus, tab2_bonus, tab1_bonus = 5, 4, 3, 2, 1
+
         else:
             max_bonus = (count_bonus // 10 + 1) * 10
             tab4_bonus = round(max_bonus / 1.25)
@@ -85,8 +89,9 @@ def index(request, q_id = None):
             {'max_bonus': max_bonus, 'tab4_bonus': tab4_bonus, 'tab3_bonus': tab3_bonus,
              'tab2_bonus': tab2_bonus, 'tab1_bonus': tab1_bonus})
         # ошибки
-        if count_mistakes < 10:
-            max_mistake, tab4_mistake, tab3_mistake, tab2_mistake, tab1_mistake = 10, 8, 6, 4, 2
+        if count_mistakes < 5:
+            max_mistake, tab4_mistake, tab3_mistake, tab2_mistake, tab1_mistake = 5, 4, 3, 2, 1
+
         else:
             max_mistake = (count_mistakes // 10 + 1) * 10
             tab4_mistake = round(max_mistake / 1.25)
@@ -137,7 +142,7 @@ def index(request, q_id = None):
             mistake_list_map.append({'employee': f'{item.employee.first_name} {item.employee.last_name[:1]}.', 'activity': item.activity, 'criterion': item.criterion, 'comment': item.comment, 'initiator': f'{item.initiator.first_name} {item.initiator.last_name[:1]}.', 'date': item.created_at, 'quarter': item.quarter})
 
 
-    data = {'bonus_list_map': bonus_list_map, 'mistake_list_map': mistake_list_map, 'slider_list': slider_list, 'donut_dict': donut_dict, 'bonus_list': bonus_list, 'mistake_list': mistake_list, 'selected_qarter': q_id, 'all_quarter': all_quarter, 'bonus_mistake_count_list': bonus_mistake_count_list}
+    data = {'bonus_list_map': bonus_list_map, 'mistake_list_map': mistake_list_map, 'slider_list': slider_list, 'donut_dict': donut_dict, 'bonus_list': bonus_list, 'mistake_list': mistake_list, 'q_id': q_id, 'all_quarter': all_quarter, 'bonus_mistake_count_list': bonus_mistake_count_list}
 
     return render(request, './index.html', data)
 
@@ -197,7 +202,7 @@ def profile(request, user_id = None, q_id = None):
 
 
 
-    data = {'selected_user_id': user_id, 'bonus_list_map': bonus_list_map, 'mistake_list_map': mistake_list_map, 'slider_list': slider_list,  'selected_quarter': q_id, 'all_quarter': all_quarter, 'all_mistake_count': all_mistake_count, 'all_bonus_count': all_bonus_count, 'like_list_map': like_list_map}
+    data = {'selected_user_id': user_id, 'bonus_list_map': bonus_list_map, 'mistake_list_map': mistake_list_map, 'slider_list': slider_list,  'q_id': q_id, 'all_quarter': all_quarter, 'all_mistake_count': all_mistake_count, 'all_bonus_count': all_bonus_count, 'like_list_map': like_list_map}
 
     return render(request, './profile.html', data)
 
