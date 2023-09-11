@@ -1,5 +1,6 @@
 from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db import models
+from django.contrib.auth.models import AbstractUser
 
 # Create your models here.
 class TimedBaseModel(models.Model):
@@ -9,7 +10,7 @@ class TimedBaseModel(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
-class User(models.Model):
+class User(AbstractUser):
     class Meta:
         verbose_name = "Пользователь"
         verbose_name_plural = "Пользователи"
@@ -37,17 +38,14 @@ class User(models.Model):
         ('agreement', 'Согласующий')
     )
 
-    user_id = models.BigIntegerField(verbose_name="ID Пользователя Телеграм", unique=True, primary_key=True)
-    first_name = models.CharField(verbose_name="Имя пользователя", max_length=100)
-    last_name = models.CharField(verbose_name="Фамилия пользователя", max_length=100)
+    user_id = models.BigIntegerField(verbose_name="ID Пользователя Телеграм", unique=True, null=True)
     access = models.CharField(verbose_name="Доступ", choices=all_access, max_length=100, null=True)
     role = models.CharField(verbose_name="Роль в секторе", choices=all_role, max_length=100, null=True)
-    status = models.CharField(verbose_name="Статус", choices=all_status, max_length=100, null=True)
     photo = models.ImageField(upload_to='photo/', null=True, blank=True)
     sop = models.CharField(verbose_name="СОП", max_length=100, choices=all_sop, null=True)
 
     def __str__(self):
-        return f"{self.first_name} {self.last_name[:1]}. {self.get_sop_display()}"
+        return f"{self.first_name} {self.last_name}. {self.get_sop_display()}"
 
 
 class Quarter(models.Model):

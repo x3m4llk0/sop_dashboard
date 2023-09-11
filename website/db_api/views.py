@@ -1,7 +1,10 @@
 from django.db.models import Count
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from .models import *
+from .forms import UserLoginForm
+from django.contrib import auth
+from django.urls import reverse
 
 # Create your views here.
 
@@ -9,6 +12,13 @@ def index(request, q_id = None):
     all_bonus = Bonus.objects.all()[::-1]
     all_mistakes = Mistake.objects.all()[::-1]
     stvp_users = User.objects.filter(sop='stvp')
+
+
+    #проверка на аут
+    # if request.user.is_authenticated:
+    #     ...  # Do something for logged-in users.
+    # else:
+    #     ...  # Do something for anonymous users.
 
 
     username = request.user
@@ -104,7 +114,7 @@ def index(request, q_id = None):
     # Для слайдера
     slider_list=[]
     for user in stvp_users:
-        if user.status == 'ban':
+        if not user.is_active:
             continue
         else:
             if q_id != None:
@@ -213,4 +223,23 @@ def profile(request, user_id = None, q_id = None):
     return render(request, './profile.html', data)
 
 
+def login(request):
+    if request.method == 'POST':
+        form = UserLoginForm(data=request.POST)
+        if form.is_valid():
+            username = request.POST['username']
+            password = request.POST['password']
+            user = auth.authenticate(username=username, password=password)
+            if user:
+                auth.login(request, user)
+                return HttpResponseRedirect(reverse('home'))
+    else:
+        form = UserLoginForm()
+    context = {'form': form}
+    return render(request, './auth/login.html', context)
 
+
+
+
+def register(request):
+    return render(request, './auth/register.html')
