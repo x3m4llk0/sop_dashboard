@@ -64,3 +64,4 @@ venv.bak/
 !/website/db.sqlite3
 !/logs/
 !/.env
+

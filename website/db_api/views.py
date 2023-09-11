@@ -104,10 +104,13 @@ def index(request, q_id = None):
     # Для слайдера
     slider_list=[]
     for user in stvp_users:
-        if q_id != None:
-            slider_list.append({'user_id':user.user_id, 'first_name': user.first_name, 'last_name': user.last_name[:1]+".", 'count_like':Like.objects.filter(employee=user.user_id, quarter=q_id).count(), 'photo': user.photo})
+        if user.status == 'ban':
+            continue
         else:
-            slider_list.append({'user_id':user.user_id, 'first_name': user.first_name, 'last_name': user.last_name[:1] + ".", 'count_like': Like.objects.filter(employee=user.user_id).count(), 'photo': user.photo})
+            if q_id != None:
+                slider_list.append({'user_id':user.user_id, 'first_name': user.first_name, 'last_name': user.last_name[:1]+".", 'count_like':Like.objects.filter(employee=user.user_id, quarter=q_id).count(), 'photo': user.photo})
+            else:
+                slider_list.append({'user_id':user.user_id, 'first_name': user.first_name, 'last_name': user.last_name[:1] + ".", 'count_like': Like.objects.filter(employee=user.user_id).count(), 'photo': user.photo})
     slider_list = sorted(slider_list, key=lambda item: item['last_name'])
 
 
@@ -154,10 +157,13 @@ def profile(request, user_id = None, q_id = None):
     # Для слайдера
     slider_list=[]
     for user in stvp_users:
-        if q_id != None:
-            slider_list.append({'user_id':user.user_id, 'first_name': user.first_name, 'last_name': user.last_name[:1]+".", 'count_like':Like.objects.filter(employee=user.user_id, quarter=q_id).count(), 'photo': user.photo})
+        if user.status == 'ban':
+            continue
         else:
-            slider_list.append({'user_id':user.user_id, 'first_name': user.first_name, 'last_name': user.last_name[:1] + ".", 'count_like': Like.objects.filter(employee=user.user_id).count(), 'photo': user.photo})
+            if q_id != None:
+                slider_list.append({'user_id':user.user_id, 'first_name': user.first_name, 'last_name': user.last_name[:1]+".", 'count_like':Like.objects.filter(employee=user.user_id, quarter=q_id).count(), 'photo': user.photo})
+            else:
+                slider_list.append({'user_id':user.user_id, 'first_name': user.first_name, 'last_name': user.last_name[:1] + ".", 'count_like': Like.objects.filter(employee=user.user_id).count(), 'photo': user.photo})
     slider_list = sorted(slider_list, key=lambda item: item['last_name'])
 
 

@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-2%kh^)hh=h$&gw95a@)p))1uygvj-bdmsrws948s-1hmsbehp)
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['77.223.98.53', '127.0.0.1', 'localhost', 'sop-dashboard.ru']
+ALLOWED_HOSTS = ['77.223.98.53', '127.0.0.1', 'localhost', 'sop-dashboard.ru', 'www.sop-dashboard.ru']
 
 
 # Application definition
@@ -84,25 +84,18 @@ WSGI_APPLICATION = 'website.wsgi.application'
 from dotenv import load_dotenv
 load_dotenv()
 
-if DEBUG:
-    DATABASES = {
-        "default": {
-            "ENGINE": "django.db.backends.sqlite3",
-            "NAME": "mydatabase",
-        }
-    }
-else:
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.postgresql_psycopg2',
-            'NAME': os.getenv('DB_NAME'),
-            'USER': os.getenv('DB_USER'),
-            'PASSWORD': os.getenv('PG_PASSWORD'),
-            'HOST': os.getenv('DB_HOST'),
-            'PORT': os.getenv('DB_PORT')
 
-        }
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': os.getenv('DB_NAME'),
+        'USER': os.getenv('DB_USER'),
+        'PASSWORD': os.getenv('PG_PASSWORD'),
+        'HOST': os.getenv('DB_HOST'),
+        'PORT': os.getenv('DB_PORT')
+
     }
+}
 
 # DATABASES = {
 #     'default': {
