@@ -3,7 +3,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from .models import *
 from .forms import UserLoginForm, UserRegistrationForm
-from django.contrib import auth
+from django.contrib import auth, messages
 from django.urls import reverse
 
 # Create your views here.
@@ -250,10 +250,11 @@ def registration(request):
             data_request['access'] = 'user'
 
         form = UserRegistrationForm(data=data_request)
-        # if form.is_valid():
-        form.save()
-        return HttpResponseRedirect(reverse('login'))
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Вы успешно зарегистрированы!')
+            return HttpResponseRedirect(reverse('login'))
     else:
         form = UserRegistrationForm()
     context = {'form': form}
-    return render(request, './auth/register.html', context)
+    return render(request, './auth/registration.html', context)
