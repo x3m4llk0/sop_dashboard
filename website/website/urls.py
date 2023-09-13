@@ -26,5 +26,5 @@ urlpatterns = [
     path('id<int:user_id>/', views.profile),
     path('id<int:user_id>/q<int:q_id>/', views.profile),
     path('login/', views.login, name='login'),
-    path('register/', views.register, name='register'),
+    path('registration/', views.registration, name='registration'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

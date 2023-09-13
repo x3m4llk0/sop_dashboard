@@ -2,7 +2,7 @@ from django.db.models import Count
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from .models import *
-from .forms import UserLoginForm
+from .forms import UserLoginForm, UserRegistrationForm
 from django.contrib import auth
 from django.urls import reverse
 
@@ -241,5 +241,19 @@ def login(request):
 
 
 
-def register(request):
-    return render(request, './auth/register.html')
+def registration(request):
+    if request.method == 'POST':
+        data_request = request.POST.copy()
+        if data_request['role'] == 'ns':
+            data_request['access'] = 'agreement'
+        else:
+            data_request['access'] = 'user'
+
+        form = UserRegistrationForm(data=data_request)
+        # if form.is_valid():
+        form.save()
+        return HttpResponseRedirect(reverse('login'))
+    else:
+        form = UserRegistrationForm()
+    context = {'form': form}
+    return render(request, './auth/register.html', context)

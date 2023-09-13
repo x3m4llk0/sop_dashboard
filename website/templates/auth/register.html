@@ -48,7 +48,8 @@
                     </h3>
                   </div>
                   <div class="card-body">
-                    <form>
+                    <form action="{% url 'registration' %}" method="post">
+                    {% csrf_token %}
                       <div class="form-row">
                         <div class="col-md-6">
                           <div class="form-group">
@@ -63,15 +64,8 @@
                         </div>
                         <div class="col-md-6">
                           <div class="form-group">
-                            <label class="small mb-1" for="inputPassword"
-                              >Telegram ID</label
-                            >
-                            <input
-                              class="form-control py-3"
-                              id="inputPassword"
-                              type="password"
-                              placeholder="Введите Telegram ID"
-                            />
+                            <label class="small mb-1" for="{{ form.user_id.id_for_label }}">Telegram ID</label>
+                            {{ form.user_id }}
                           </div>
                         </div>
                       </div>
@@ -79,15 +73,8 @@
                       <div class="form-row">
                         <div class="col-md-12">
                           <div class="form-group">
-                            <label class="small mb-1" for="inputFirstName"
-                              >Имя</label
-                            >
-                            <input
-                              class="form-control py-3"
-                              id="inputFirstName"
-                              type="text"
-                              placeholder="Введите имя"
-                            />
+                            <label class="small mb-1" for="{{ form.first_name.id_for_label }}">Имя</label>
+                            {{ form.first_name }}
                           </div>
                         </div>
                       </div>
@@ -95,15 +82,8 @@
                       <div class="form-row">
                         <div class="col-md-12">
                           <div class="form-group">
-                            <label class="small mb-1" for="inputLastName"
-                              >Фамилия</label
-                            >
-                            <input
-                              class="form-control py-3"
-                              id="inputLastName"
-                              type="text"
-                              placeholder="Введите фамилию"
-                            />
+                            <label class="small mb-1" for="{{ form.last_name.id_for_label }}">Фамилия</label>
+                            {{ form.last_name }}
                           </div>
                         </div>
                       </div>
@@ -111,18 +91,10 @@
                       <div class="form-row">
                         <div class="col-md-12">
                           <div class="form-group">
-                            <label class="small mb-1" for="changeSOP">
+                            <label class="small mb-1" for="{{ form.sop.id_for_label }}">
                               Площадка СОП
                             </label>
-                            <select
-                              class="form-select"
-                              aria-label="Default select example"
-                            >
-                              <option selected>Ставрополь</option>
-                              <option value="1">Самара</option>
-                              <option value="2">Волгоград</option>
-                              <option value="3">Омск</option>
-                            </select>
+                            {{ form.sop }}
                           </div>
                         </div>
                       </div>
@@ -130,17 +102,8 @@
                       <div class="form-row">
                         <div class="col-md-12">
                           <div class="form-group">
-                            <label class="small mb-1" for="changeSOP">
-                              Должность
-                            </label>
-                            <select
-                              class="form-select"
-                              aria-label="Default select example"
-                            >
-                              <option selected>Аналитик</option>
-                              <option value="1">Эксперт</option>
-                              <option value="2">НС</option>
-                            </select>
+                            <label class="small mb-1" for="{{ form.role.id_for_label }}">Должность</label>
+                            {{ form.role }}
                           </div>
                         </div>
                       </div>
@@ -148,16 +111,8 @@
                       <div class="form-row">
                         <div class="col-md-12">
                           <div class="form-group">
-                            <label class="small mb-1" for="inputUsername"
-                              >Логин</label
-                            >
-                            <input
-                              class="form-control py-3"
-                              id="inputUsername"
-                              type="text"
-                              aria-describedby="usernameHelp"
-                              placeholder="Введите логин"
-                            />
+                            <label class="small mb-1" for="{{ form.username.id_for_label }}">Логин</label>
+                            {{ form.username }}
                           </div>
                         </div>
                       </div>
@@ -165,30 +120,16 @@
                       <div class="form-row">
                         <div class="col-md-12">
                           <div class="form-group">
-                            <label class="small mb-1" for="inputPassword"
-                              >Пароль</label
-                            >
-                            <input
-                              class="form-control py-3"
-                              id="inputPassword"
-                              type="password"
-                              placeholder="Введите пароль"
-                            />
+                            <label class="small mb-1" for="{{ form.password1.id_for_label }}">Пароль</label>
+                            {{ form.password1 }}
                           </div>
                         </div>
                       </div>
 
                       <div class="form-row">
                         <div class="col-md-12">
-                          <label class="small mb-1" for="inputConfirmPassword"
-                            >Подтверждение пароля</label
-                          >
-                          <input
-                            class="form-control py-3"
-                            id="inputConfirmPassword"
-                            type="password"
-                            placeholder="Подтвердите пароль"
-                          />
+                          <label class="small mb-1" for="{{ form.password2.id_for_label }}">Подтвердите пароль</label>
+                            {{ form.password2 }}
                         </div>
                       </div>
                       <div class="form-group mt-4 mb-0">

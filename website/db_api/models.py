@@ -3,6 +3,19 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser
 
 # Create your models here.
+all_sop = (
+    ('stvp', 'Ставрополь'),
+    ('omsk', 'Омск'),
+    ('vlg', 'Волгоград'),
+    ('smr', 'Самара'),
+)
+
+all_role = (
+    ('analyst', 'Аналитик'),
+    ('expert', 'Эксперт'),
+    ('ns', 'Начальник сектора')
+)
+
 class TimedBaseModel(models.Model):
     class Meta:
         abstract = True
@@ -15,19 +28,6 @@ class User(AbstractUser):
         verbose_name = "Пользователь"
         verbose_name_plural = "Пользователи"
 
-    all_sop = (
-        ('stvp', 'Ставрополь'),
-        ('omsk', 'Омск'),
-        ('vlg', 'Волгоград'),
-        ('smr', 'Самара'),
-    )
-
-    all_role = (
-        ('analyst', 'Аналитик'),
-        ('expert', 'Эксперт'),
-        ('ns', 'Начальник сектора')
-    )
-
     all_status = (
         ('active', 'Активен'),
         ('ban', 'Уволен')
@@ -38,11 +38,11 @@ class User(AbstractUser):
         ('agreement', 'Согласующий')
     )
 
-    user_id = models.BigIntegerField(verbose_name="ID Пользователя Телеграм", unique=True, null=True)
-    access = models.CharField(verbose_name="Доступ", choices=all_access, max_length=100, null=True)
-    role = models.CharField(verbose_name="Роль в секторе", choices=all_role, max_length=100, null=True)
+    user_id = models.BigIntegerField(verbose_name="ID Пользователя Телеграм", unique=True, null=True, blank=True)
+    access = models.CharField(verbose_name="Доступ", choices=all_access, max_length=100, null=True, blank=True)
+    role = models.CharField(verbose_name="Роль в секторе", choices=all_role, max_length=100, null=True, blank=True)
     photo = models.ImageField(upload_to='photo/', null=True, blank=True)
-    sop = models.CharField(verbose_name="СОП", max_length=100, choices=all_sop, null=True)
+    sop = models.CharField(verbose_name="СОП", max_length=100, choices=all_sop, null=True, blank=True)
 
     def __str__(self):
         return f"{self.first_name} {self.last_name}. {self.get_sop_display()}"
