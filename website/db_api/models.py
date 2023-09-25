@@ -28,10 +28,6 @@ class User(AbstractUser):
         verbose_name = "Пользователь"
         verbose_name_plural = "Пользователи"
 
-    all_status = (
-        ('active', 'Активен'),
-        ('ban', 'Уволен')
-    )
 
     all_access = (
         ('user', 'Пользователь'),

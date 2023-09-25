@@ -18,9 +18,6 @@ def index(request, q_id = None):
     else:
         all_users = User.objects.filter(sop=request.user.sop)
 
-        username = request.user
-        print(username, all_users)
-
         # Для бонусов
         bonus_list = []
         for user in all_users:
