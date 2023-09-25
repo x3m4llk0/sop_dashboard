@@ -34,7 +34,7 @@ class User(AbstractUser):
         ('agreement', 'Согласующий')
     )
 
-    user_id = models.BigIntegerField(verbose_name="ID Пользователя Телеграм", unique=True, null=True, blank=True)
+    user_id = models.BigIntegerField(verbose_name="ID Пользователя Телеграм", unique=True, null=False, blank=True, primary_key=True)
     access = models.CharField(verbose_name="Доступ", choices=all_access, max_length=100, null=True, blank=True)
     role = models.CharField(verbose_name="Роль в секторе", choices=all_role, max_length=100, null=True, blank=True)
     photo = models.ImageField(upload_to='photo/', null=True, blank=True)
@@ -55,8 +55,6 @@ class Quarter(models.Model):
     def __str__(self):
         return f"{self.quarter}Q"
 
-def get_sentinel_user():
-    return User.objects.get_or_create(user_id='deleted', first_name='deleted', last_name='deleted')[0]
 
 class Bonus(TimedBaseModel):
     class Meta:
