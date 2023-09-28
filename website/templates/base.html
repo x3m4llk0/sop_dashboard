@@ -18,7 +18,12 @@
     </div>
 
     <div class="exit">
-      <a href="#"><img class="profile" src="{% static 'assets/imgs/imgProfile.jpg'%}"></img></a>
+      {% if user.photo %}
+        <a href="#"><img class="profile" src="{{ user.photo.url }}"></img></a>
+      {% else %}
+        <a href="#"><img class="profile" src="{% static 'assets/imgs/No_image_available.svg'%}"></img></a>
+      {% endif %}
+
 
       <a href="{% url 'logout' %}"><div class="exit_icon"></div></a>
       </div>
