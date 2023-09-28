@@ -1,6 +1,10 @@
+from django.contrib.auth.base_user import AbstractBaseUser
+from django.contrib.auth.validators import UnicodeUsernameValidator
 from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db import models
 from django.contrib.auth.models import AbstractUser
+from django.utils.translation import gettext_lazy as _
+from django.contrib.auth.models import UserManager
 
 # Create your models here.
 all_sop = (
@@ -23,18 +27,81 @@ class TimedBaseModel(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
+class TgUser(models.Model):
+    user_id = models.BigIntegerField(verbose_name="ID Пользователя Телеграм", unique=True, null=False, blank=True, primary_key=True)
+    first_name = models.CharField(verbose_name="Имя", max_length=100, null=True, blank=True)
+    last_name = models.CharField(verbose_name="Фамилия", max_length=100, null=True, blank=True)
+    access = models.CharField(verbose_name="Доступ", max_length=100, null=True, blank=True)
+    role = models.CharField(verbose_name="Роль в секторе", choices=all_role, max_length=100, null=True, blank=True)
+    photo = models.ImageField(upload_to='photo/', null=True, blank=True)
+    sop = models.CharField(verbose_name="СОП", max_length=100, choices=all_sop, null=True, blank=True)
+
+class SiteUser(AbstractBaseUser):
+    username_validator = UnicodeUsernameValidator()
+    username = models.CharField(
+        _("username"),
+        max_length=150,
+        unique=True,
+        help_text=_(
+            "Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only."
+        ),
+        validators=[username_validator],
+        error_messages={
+            "unique": _("A user with that username already exists."),
+        },
+    )
+    id = models.AutoField(primary_key=True)
+    is_superuser = models.BooleanField(
+        _("superuser status"),
+        default=False,
+        help_text=_(
+            "Designates that this user has all permissions without "
+            "explicitly assigning them."
+        ),
+    )
+    is_staff = models.BooleanField(
+        _("staff status"),
+        default=False,
+        help_text=_("Designates whether the user can log into this admin site."),
+    )
+    is_active = models.BooleanField(
+        _("active"),
+        default=True,
+        help_text=_(
+            "Designates whether this user should be treated as active. "
+            "Unselect this instead of deleting accounts."
+        ),
+    )
+    email = models.EmailField(_("email address"), blank=True)
+    user_id = models.ForeignKey(TgUser, verbose_name="TG_ID", on_delete=models.CASCADE, blank=True, null=True)
+
+    EMAIL_FIELD = "email"
+    USERNAME_FIELD = "username"
+    REQUIRED_FIELDS = ["email"]
+
+    objects = UserManager()
+
+    def has_perm(self, perm, obj=None):
+        return self.is_superuser
+
+    def has_module_perms(self, app_label):
+        return self.is_superuser
+
+
+
+
+
 class User(AbstractUser):
     class Meta:
         verbose_name = "Пользователь"
         verbose_name_plural = "Пользователи"
-
 
     all_access = (
         ('user', 'Пользователь'),
         ('agreement', 'Согласующий')
     )
 
-    user_id = models.BigIntegerField(verbose_name="ID Пользователя Телеграм", unique=True, null=True, blank=True)
+    user_id = models.BigIntegerField(verbose_name="ID Пользователя Телеграм", unique=True, null=False, blank=True, primary_key=True)
     access = models.CharField(verbose_name="Доступ", choices=all_access, max_length=100, null=True, blank=True)
     role = models.CharField(verbose_name="Роль в секторе", choices=all_role, max_length=100, null=True, blank=True)
     photo = models.ImageField(upload_to='photo/', null=True, blank=True)
@@ -55,8 +122,6 @@ class Quarter(models.Model):
     def __str__(self):
         return f"{self.quarter}Q"
 
-def get_sentinel_user():
-    return User.objects.get_or_create(user_id='deleted', first_name='deleted', last_name='deleted')[0]
 
 class Bonus(TimedBaseModel):
     class Meta:
@@ -64,8 +129,8 @@ class Bonus(TimedBaseModel):
         verbose_name_plural = "Бонусы"
 
     id = models.AutoField(primary_key=True)
-    initiator = models.ForeignKey(User, verbose_name="Инициатор", on_delete=models.CASCADE, related_name='bonus_initiator')
-    employee = models.ForeignKey(User, verbose_name="Сотрудник", on_delete=models.CASCADE, related_name='bonus_employee')
+    initiator = models.ForeignKey(TgUser, verbose_name="Инициатор", on_delete=models.CASCADE, related_name='bonus_initiator')
+    employee = models.ForeignKey(TgUser, verbose_name="Сотрудник", on_delete=models.CASCADE, related_name='bonus_employee')
     quarter = models.ForeignKey(Quarter, verbose_name="Квартал", on_delete=models.CASCADE, related_name='bonus_quarter')
     activity = models.CharField(verbose_name="Активность", max_length=200, null=True)
     comment = models.CharField(verbose_name="Комментарий", max_length=200, null=True)
@@ -81,8 +146,8 @@ class Mistake(TimedBaseModel):
         verbose_name_plural = "Ошибки"
 
     id = models.AutoField(primary_key=True)
-    initiator = models.ForeignKey(User, verbose_name="Инициатор", on_delete=models.CASCADE, related_name='mistake_initiator')
-    employee = models.ForeignKey(User, verbose_name="Сотрудник", on_delete=models.CASCADE, related_name='mistake_employee')
+    initiator = models.ForeignKey(TgUser, verbose_name="Инициатор", on_delete=models.CASCADE, related_name='mistake_initiator')
+    employee = models.ForeignKey(TgUser, verbose_name="Сотрудник", on_delete=models.CASCADE, related_name='mistake_employee')
     quarter = models.ForeignKey(Quarter, verbose_name="Квартал", on_delete=models.CASCADE, related_name='mistake_quarter')
     activity = models.CharField(verbose_name="Активность", max_length=200, null=True)
     comment = models.CharField(verbose_name="Комментарий", max_length=200, null=True)
@@ -98,8 +163,8 @@ class Like(TimedBaseModel):
         verbose_name_plural = "Лайки"
 
     id = models.AutoField(primary_key=True)
-    initiator = models.ForeignKey(User, verbose_name="Инициатор", on_delete=models.CASCADE, related_name='like_initiator')
-    employee = models.ForeignKey(User, verbose_name="Сотрудник", on_delete=models.CASCADE, related_name='like_employee')
+    initiator = models.ForeignKey(TgUser, verbose_name="Инициатор", on_delete=models.CASCADE, related_name='like_initiator')
+    employee = models.ForeignKey(TgUser, verbose_name="Сотрудник", on_delete=models.CASCADE, related_name='like_employee')
     quarter = models.ForeignKey(Quarter, verbose_name="Квартал", on_delete=models.CASCADE, related_name='like_quarter')
 
     def __str__(self):

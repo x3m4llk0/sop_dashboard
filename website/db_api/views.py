@@ -11,12 +11,12 @@ from django.urls import reverse
 def index(request, q_id = None):
     all_bonus = Bonus.objects.all()[::-1]
     all_mistakes = Mistake.objects.all()[::-1]
-
     if not request.user.is_authenticated:
         return HttpResponseRedirect(reverse('login'))
 
     else:
-        all_users = User.objects.filter(sop=request.user.sop)
+        sop = request.user.user_id.sop
+        all_users = TgUser.objects.filter(sop=sop)
 
         # Для бонусов
         bonus_list = []
@@ -116,7 +116,9 @@ def index(request, q_id = None):
         # Для слайдера
         slider_list = []
         for user in all_users:
-            if not user.is_active:
+            #находим пользователя в SiteUser и проверяем его на активность. Если не активен, то не записываем его в слайдер
+            site_user = SiteUser.objects.filter(user_id=user.user_id).first()
+            if not site_user.is_active:
                 continue
             else:
                 if q_id != None:
@@ -187,11 +189,14 @@ def profile(request, user_id = None, q_id = None):
     if not request.user.is_authenticated or request.user.is_anonymous:
         return HttpResponseRedirect(reverse('login'))
     else:
-        all_users = User.objects.filter(sop=request.user.sop)
+        sop = request.user.user_id.sop
+        all_users = TgUser.objects.filter(sop=sop)
         # Для слайдера
         slider_list = []
         for user in all_users:
-            if not user.is_active:
+            #находим пользователя в SiteUser и проверяем его на активность. Если не активен, то не записываем его в слайдер
+            site_user = SiteUser.objects.filter(user_id=user.user_id).first()
+            if not site_user.is_active:
                 continue
             else:
                 if q_id != None:
