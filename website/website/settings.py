@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 
 from pathlib import Path
 import os
+from django.urls import reverse_lazy
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -24,7 +26,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-2%kh^)hh=h$&gw95a@)p))1uygvj-bdmsrws948s-1hmsbehp)'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['77.223.98.53', '127.0.0.1', 'localhost', 'sop-dashboard.ru', 'www.sop-dashboard.ru']
 
@@ -159,3 +161,4 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 #Users
 
 AUTH_USER_MODEL = 'db_api.User'
+LOGIN_REDIRECT_URL = 'home'

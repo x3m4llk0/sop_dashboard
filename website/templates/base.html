@@ -19,9 +19,9 @@
 
     <div class="exit">
       {% if user.photo %}
-        <a href="#"><img class="profile" src="{{ user.photo.url }}"></img></a>
+        <a href="/password_change/"><img class="profile" src="{{ user.photo.url }}"></img></a>
       {% else %}
-        <a href="#"><img class="profile" src="{% static 'assets/imgs/No_image_available.svg'%}"></img></a>
+        <a href="/password_change/"><img class="profile" src="{% static 'assets/imgs/No_image_available.svg'%}"></img></a>
       {% endif %}
 
 

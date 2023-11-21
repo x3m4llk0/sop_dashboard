@@ -18,6 +18,7 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path
 from db_api import views
+from django.contrib.auth import views as auth_views
 
 urlpatterns = [
     path('', views.index, name='home'),
@@ -28,4 +29,8 @@ urlpatterns = [
     path('login/', views.login, name='login'),
     path('logout/', views.logout, name='logout'),
     path('registration/', views.registration, name='registration'),
+    path('password_change/', auth_views.PasswordChangeView.as_view(), name='password_change'),
+    path('password_change/done/', auth_views.PasswordChangeDoneView.as_view(), name='password_change_done'),
+
+
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

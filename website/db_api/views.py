@@ -13,7 +13,8 @@ def index(request, q_id = None):
     all_mistakes = Mistake.objects.all()[::-1]
 
     if not request.user.is_authenticated:
-        return HttpResponseRedirect(reverse('login'))
+        pass
+        # return HttpResponseRedirect(reverse('login'))
 
     else:
         all_users = User.objects.filter(sop=request.user.sop)
