@@ -13,8 +13,7 @@ def index(request, q_id = None):
     all_mistakes = Mistake.objects.all()[::-1]
 
     if not request.user.is_authenticated:
-        pass
-        # return HttpResponseRedirect(reverse('login'))
+        return HttpResponseRedirect(reverse('login'))
 
     else:
         all_users = User.objects.filter(sop=request.user.sop)
@@ -133,12 +132,12 @@ def index(request, q_id = None):
 
         # Для бублика
         if q_id != None:
-            donut_dict = {'likes': Like.objects.filter(quarter=q_id).count(),
-                          'mistakes': Mistake.objects.filter(quarter=q_id).count(),
-                          'bonus': Bonus.objects.filter(quarter=q_id).count()}
+            donut_dict = {'likes': Like.objects.filter(quarter=q_id, employee__sop=request.user.sop).count(),
+                          'mistakes': Mistake.objects.filter(quarter=q_id, employee__sop=request.user.sop).count(),
+                          'bonus': Bonus.objects.filter(quarter=q_id, employee__sop=request.user.sop).count()}
         else:
-            donut_dict = {'likes': Like.objects.count(), 'mistakes': Mistake.objects.count(),
-                          'bonus': Bonus.objects.count()}
+            donut_dict = {'likes': Like.objects.filter(employee__sop=request.user.sop).count(), 'mistakes': Mistake.objects.filter(employee__sop=request.user.sop).count(),
+                          'bonus': Bonus.objects.filter(employee__sop=request.user.sop).count()}
 
         # кварталы
         all_quarter = Quarter.objects.all()
@@ -146,13 +145,13 @@ def index(request, q_id = None):
         # сетка бонусов
         bonus_list_map = []
         if q_id != None:
-            for item in Bonus.objects.filter(quarter=q_id)[::-1]:
+            for item in Bonus.objects.filter(quarter=q_id, employee__sop=request.user.sop)[::-1]:
                 bonus_list_map.append({'employee': f'{item.employee.first_name} {item.employee.last_name[:1]}.',
                                        'activity': item.activity, 'criterion': item.criterion, 'comment': item.comment,
                                        'initiator': f'{item.initiator.first_name} {item.initiator.last_name[:1]}.',
                                        'date': item.created_at, 'quarter': item.quarter})
         else:
-            for item in Bonus.objects.all()[::-1]:
+            for item in Bonus.objects.filter(employee__sop=request.user.sop)[::-1]:
                 bonus_list_map.append({'employee': f'{item.employee.first_name} {item.employee.last_name[:1]}.',
                                        'activity': item.activity, 'criterion': item.criterion, 'comment': item.comment,
                                        'initiator': f'{item.initiator.first_name} {item.initiator.last_name[:1]}.',
@@ -161,14 +160,14 @@ def index(request, q_id = None):
         # сетка ошибок
         mistake_list_map = []
         if q_id != None:
-            for item in Mistake.objects.filter(quarter=q_id)[::-1]:
+            for item in Mistake.objects.filter(quarter=q_id, employee__sop=request.user.sop)[::-1]:
                 mistake_list_map.append({'employee': f'{item.employee.first_name} {item.employee.last_name[:1]}.',
                                          'activity': item.activity, 'criterion': item.criterion,
                                          'comment': item.comment,
                                          'initiator': f'{item.initiator.first_name} {item.initiator.last_name[:1]}.',
                                          'date': item.created_at, 'quarter': item.quarter})
         else:
-            for item in Mistake.objects.all()[::-1]:
+            for item in Mistake.objects.filter(employee__sop=request.user.sop)[::-1]:
                 mistake_list_map.append({'employee': f'{item.employee.first_name} {item.employee.last_name[:1]}.',
                                          'activity': item.activity, 'criterion': item.criterion,
                                          'comment': item.comment,
